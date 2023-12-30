@@ -1,0 +1,13 @@
+[project]
+name = "Wallpaper Changer"
+version = "0.0.1"
+description = "A wallpaper changer that works with Hyprland."
+readme = "README.md"
+requires-python=">=3.7"
+license = {file = "LICENSE"}
+keywords = ["wallpaper", "background", "pictures", "changer"]
+authors = [
+	{name = "Brandon Hill", email = "brandon.d.hill@gmail.com"}
+]
+
+[tool.setuptools]
