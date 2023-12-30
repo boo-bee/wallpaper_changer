@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 """Wallpaper changer."""
-import pathlib
-import time
-import os
-import random
 import argparse
+import os
+import pathlib
+import random
+import time
 
 
 def change_wallpapers(wallpapers_dir: pathlib.Path) -> None:
@@ -21,17 +21,22 @@ def change_wallpapers(wallpapers_dir: pathlib.Path) -> None:
 
 
 if __name__ == "__main__":
-    # wait for hyprland to start
-    home_dir = pathlib.Path.home()
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", type=str, help="The path to the wallpapers.")
     args = parser.parse_args()
-    time.sleep(1)
+    home_dir = pathlib.Path.home()
+    # set a default path
     wallpapers_dir = home_dir / "Pictures" / "wallpapers"
     if args.d:
         try:
             wallpapers_dir = pathlib.Path(args.d)
         except Exception as e:
             print(e)
+    if not wallpapers_dir.exists():
+        print(f"Error: The path \"{wallpapers_dir}\" does not exist!")
+        exit(1)
+
+    # wait for hyprland to start
+    time.sleep(1)
     while True:
         change_wallpapers(wallpapers_dir)
